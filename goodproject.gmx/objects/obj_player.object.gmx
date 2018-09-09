@@ -25,7 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spd = 4;
+            <string>/// Create
+
+hsp = 0;
+vsp = 0;
+grv = 0.6;
+walksp = 4;
+
 </string>
           </argument>
         </arguments>
@@ -48,22 +54,50 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Moving
-if keyboard_check(vk_right){
-x += spd
+            <string>/// Step
+
+//Input
+key_left = keyboard_check(vk_left);
+key_right = keyboard_check(vk_right);
+key_jump = keyboard_check_pressed(vk_space);
+key_jump_held = keyboard_check(vk_space);
+
+//Movement
+var move = key_right - key_left;
+
+hsp = move * walksp;
+
+vsp = vsp + grv;
+
+if (place_meeting(x,y+1,obj_wall)) &amp;&amp; (key_jump)
+{
+ vsp = -7;
 }
 
-if keyboard_check(vk_left){
-x -= spd
-}
+if (vsp &lt; 0) &amp;&amp; (!key_jump_held) vsp = max(vsp,0)
 
-if keyboard_check(vk_down){
-y += spd
+//Hor move
+if (place_meeting(x+hsp,y,obj_wall))
+{
+    while (!place_meeting(x+sign(hsp),y,obj_wall))
+    {
+        x = x + sign(hsp);
+    }
+    hsp = 0;
 }
+x = x + hsp;
 
-if keyboard_check(vk_up){
-y -= spd
+
+//Ver move
+if (place_meeting(x,y+vsp,obj_wall))
+{
+    while (!place_meeting(x,y+sign(vsp),obj_wall))
+    {
+        y = y + sign(vsp);
+    }
+    vsp = 0;
 }
+y = y + vsp;
 </string>
           </argument>
         </arguments>
