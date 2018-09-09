@@ -8,7 +8,11 @@
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_wall</sprite>
+<<<<<<< HEAD
     <sprite>sprites\spr_blaah</sprite>
+=======
+    <sprite>sprites\spr_block</sprite>
+>>>>>>> 2b2bf85f316c74c0a93b5e761b4447b37efb826a
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
